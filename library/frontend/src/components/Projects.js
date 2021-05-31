@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-const UserItem = ({item}) => {
+const ProjectItem = ({item}) => {
     return (
         <div>
             <div className='u_tr'>
@@ -8,26 +8,23 @@ const UserItem = ({item}) => {
                     {item.id}
                 </div>
                 <div className='ul_block'>
-                    {item.user_name}
+                    {item.name}
                 </div>
                 <div className='ul_block'>
-                    {item.first_name}
+                    {item.description}
                 </div>
                 <div className='ul_block'>
-                    {item.last_name}
+                    {item.links}
                 </div>
                 <div className='ul_block'>
-                    {item.email}
-                </div>
-                <div className='ul_block'>
-                    {item.age}
+                    {item.users.user_name}
                 </div>
             </div>
         </div>
     )
 }
 
-const UserList = ({items}) => {
+const ProjectList = ({items}) => {
     return (
         <div className='table'>
             <div className='table_bar'>
@@ -35,25 +32,21 @@ const UserList = ({items}) => {
                     ID
                 </div>
                 <div className='bar_block'>
-                    User name
+                    Project name
                 </div>
                 <div className='bar_block'>
-                    First name
+                    Description
                 </div>
                 <div className='bar_block'>
-                    Last name
+                    Links
                 </div>
                 <div className='bar_block'>
-                    Email
-                </div>
-                <div className='bar_block'>
-                    Age
+                    Members
                 </div>
             </div>
-            {items.map((item) => <UserItem item={item}/>)}
+            {items.map((item) => <ProjectItem item={item}/>)}
         </div>
     )
 }
 
-
-export default UserList
+export default ProjectList

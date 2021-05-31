@@ -1,4 +1,5 @@
 from rest_framework.generics import ListCreateAPIView
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer, HTMLFormRenderer, TemplateHTMLRenderer
 from rest_framework.viewsets import ModelViewSet
 from todo.serializers import TodoSerializer, ProjectSerializer
 from todo.models import Project, Todo
@@ -18,6 +19,7 @@ class ProjectViewSet(ModelViewSet):
     permission_classes = [AllowAny]
     pagination_class = ProjectLimitOffsetPagination
     filterset_class = ProjectNameFilter
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
 class TodoViewSet(ModelViewSet):
     queryset = Todo.objects.all()
@@ -25,5 +27,5 @@ class TodoViewSet(ModelViewSet):
     permission_classes = [AllowAny]
     pagination_class = TodoLimitOffsetPagination
     filterset_fields = ['project']
-
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 

@@ -6,8 +6,8 @@ from django import forms
 class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        # fields = ('user_name', 'first_name', 'last_name', 'email')
-        fields = '__all__'
+        fields = ['user_name', 'first_name', 'last_name', 'email']
+        # fields = '__all__'
 
 
     # def create(self, validated_data):

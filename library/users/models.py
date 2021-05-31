@@ -9,4 +9,6 @@ class User(AbstractBaseUser):
     age = models.PositiveSmallIntegerField(verbose_name='возраст')
 
     def __str__(self):
-        return f'{self.first_name}{self.last_name}'
+        return f'{self.user_name}'
+
+    USERNAME_FIELD = 'user_name'

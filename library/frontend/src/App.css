@@ -34,7 +34,7 @@
     text-align: center;
     font-size: 40px;
     display: flex;
-    justify-content:start;
+    justify-content: start;
     align-items: center;
     margin-bottom: 30px;
     background: linear-gradient(254.16deg, #189AA2 30%, #b8edf1 112.31%);
@@ -79,7 +79,7 @@
 }
 
 .table {
-    min-height: 650px;
+    min-height: 600px;
 }
 
 .table_bar {

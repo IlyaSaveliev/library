@@ -10,7 +10,8 @@ class TodoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Todo
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ['status', 'description', 'owner', 'project']
 
 class ProjectSerializer(serializers.ModelSerializer):
     users = UserModelSerializer(many=True)
@@ -19,5 +20,6 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
+        # fields = ['name', 'description', 'links']
 
 
