@@ -1,64 +1,61 @@
 // noinspection JSUnresolvedVariable
-
 import React from "react";
 
-const TodoItem = ({item}) => {
+const TodoItem = ({todo}) => {
     return (
-        <div className='u_tr'>
-            <div className='ul_block'>
-                {item.id}
-            </div>
-            <div className='ul_block'>
-                {item.project.name}
-            </div>
-            <div className='ul_block'>
-                {item.description}
-            </div>
-            <div className='ul_block'>
-                {item.created_ad}
-            </div>
-            <div className='ul_block'>
-                {item.updated_ad}
-            </div>
-            <div className='ul_block'>
-                {item.owner.user_name}
-            </div>
-            <div className='ul_block'>
-                {item.status}
-            </div>
-        </div>
+        <tr>
+            <td>
+                {todo.id}
+            </td>
+            <td>
+                {todo.project.name}
+            </td>
+            <td>
+                {todo.description}
+            </td>
+            <td>
+                {todo.created_ad}
+            </td>
+            <td>
+                {todo.updated_ad}
+            </td>
+            <td>
+                {todo.owner.username}
+            </td>
+            <td>
+                {todo.status}
+            </td>
+        </tr>
 
     )
 }
 
-const TodoList = ({items}) => {
+const TodoList = ({todos}) => {
     return (
-        <div className='table'>
-            <div className='table_bar'>
-                <div className='bar_block'>
+        <table>
+                <th>
                     ID
-                </div>
-                <div className='bar_block'>
+                </th>
+                <th>
                     Project name
-                </div>
-                <div className='bar_block'>
+                </th>
+                <th>
                     Description
-                </div>
-                <div className='bar_block'>
+                </th>
+                <th>
                     Created
-                </div>
-                <div className='bar_block'>
+                </th>
+                <th>
                     Updated
-                </div>
-                <div className='bar_block'>
+                </th>
+                <th>
                     Owner
-                </div>
-                <div className='bar_block'>
+                </th>
+                <th>
                     Status
-                </div>
-            </div>
-            {items.map((item) => <TodoItem item={item}/>)}
-        </div>
+                </th>
+            {todos.map((todo) => <TodoItem todo={todo}/>)}
+        </table>
     )
 }
 

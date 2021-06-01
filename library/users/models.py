@@ -1,14 +1,49 @@
+# from django.db import models
+# from django.utils import timezone
+# from django.utils.translation import ugettext_lazy as _
+# from django.contrib.auth.models import AbstractUser, UserManager
+# from django.contrib.auth.models import PermissionsMixin
+# # from .managers import UserManager
+#
+# class User(AbstractUser):
+#     email = models.EmailField(_('email address'), unique=True)
+#     username = None
+#     # firstname = models.CharField(max_length=64)
+#     # lastname = models.CharField(max_length=64)
+#     # is_staff = models.BooleanField(default=False)
+#     # is_active = models.BooleanField(default=True)
+#     # date_joined = models.DateTimeField(default=timezone.now)
+#
+#     USERNAME_FIELD = 'email'
+#     REQUIRED_FIELDS = []
+#
+#     objects = UserManager()
+#
+#     def __str__(self):
+#         return self.email
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
-class User(AbstractBaseUser):
-    user_name = models.CharField(max_length=64, unique=True, verbose_name='никнейм пользователя')
-    first_name = models.CharField(max_length=64, verbose_name='Имя пользователя')
-    last_name = models.CharField(max_length=64, verbose_name='фамимлия пользователя')
-    email = models.CharField(max_length=64, unique=True, verbose_name='почта')
-    age = models.PositiveSmallIntegerField(verbose_name='возраст')
+from .managers import UserManager
+
+
+class User(AbstractBaseUser, PermissionsMixin):
+    firstname = models.CharField(max_length=64)
+    lastname = models.CharField(max_length=64)
+    username = models.CharField(max_length=32)
+    email = models.EmailField(_('email address'), unique=True)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(default=timezone.now)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()
 
     def __str__(self):
-        return f'{self.user_name}'
-
-    USERNAME_FIELD = 'user_name'
+        return self.email

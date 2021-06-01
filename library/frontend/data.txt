@@ -1,0 +1,63 @@
+// const user1 = {
+        //     id: 1,
+        //     username: 'User1',
+        //     firstname: 'User1',
+        //     lastname: 'User1',
+        //     email: 'User1@db.local',
+        //     age: 35
+        // }
+        // const user2 = {
+        //     id: 2,
+        //     username: 'User2',
+        //     firstname: 'User2',
+        //     lastname: 'User2',
+        //     email: 'User2@db.local',
+        //     age: 28
+        // }
+        // const users = [user1, user2]
+        // const project1 = {
+        //     id: 1,
+        //     name: 'Project1',
+        //     description: 'Test',
+        //     links: 'http://localhost:8000',
+        //     users: user1
+        // }
+        // const project2 = {
+        //     id: 2,
+        //     name: 'Project2',
+        //     description: 'test',
+        //     links: 'http://localhost:8000',
+        //     users: user2
+        // }
+        // const project3 = {
+        //     id: 3,
+        //     name: 'Project3',
+        //     description: 'TesT',
+        //     links: 'http://localhost:8000',
+        //     users: user1
+        // }
+        // const projects = [project1, project2, project3]
+        // const todo1 = {
+        //     id: 1,
+        //     project: project1,
+        //     description: 'destroy project2',
+        //     created_ad: '',
+        //     updated_ad: '',
+        //     owner: user1,
+        //     status: 'is_active'
+        // }
+        // const todo2 = {
+        //     id: 2,
+        //     project: project3,
+        //     description: 'update projects',
+        //     created_ad: '',
+        //     updated_ad: '',
+        //     owner: user2,
+        //     status: 'is_active'
+        // }
+        // const todos = [todo1, todo2]
+        // this.state = {
+        //     'users': users,
+        //     'projects': projects,
+        //     'todos': todos
+        // }

@@ -4,10 +4,11 @@ from rest_framework.routers import DefaultRouter
 from authors.views import AuthorModelViewSet
 from todo.views import ProjectViewSet, TodoViewSet
 from users import views
+from users.views import UserViewSet
 
 router = DefaultRouter()
 # router.register('authors', AuthorModelViewSet)
-router.register('users', views.UserViewSet, basename='users')
+router.register('users', UserViewSet)
 router.register('project', ProjectViewSet)
 router.register('todo', TodoViewSet)
 
@@ -16,5 +17,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
-    path('viewsets/', include(router.urls))
+    # path('viewsets/', include(router.urls))
 ]

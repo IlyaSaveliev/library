@@ -6,11 +6,9 @@ from django import forms
 class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['user_name', 'first_name', 'last_name', 'email']
-        # fields = '__all__'
+        fields = ['id', 'username', 'firstname', 'lastname', 'email']
+        extra_kwargs = {'password': {'write_only': True}}
 
-
-    # def create(self, validated_data):
-    #     user = User.objects.create()
-    #     user.save()
-    #     return user
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user

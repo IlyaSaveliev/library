@@ -1,51 +1,47 @@
 import React from "react";
 
-const ProjectItem = ({item}) => {
+const ProjectItem = ({project}) => {
     return (
-        <div>
-            <div className='u_tr'>
-                <div className='ul_block'>
-                    {item.id}
-                </div>
-                <div className='ul_block'>
-                    {item.name}
-                </div>
-                <div className='ul_block'>
-                    {item.description}
-                </div>
-                <div className='ul_block'>
-                    {item.links}
-                </div>
-                <div className='ul_block'>
-                    {item.users.user_name}
-                </div>
-            </div>
-        </div>
+        <tr>
+                <td>
+                    {project.id}
+                </td>
+                <td>
+                    {project.name}
+                </td>
+                <td>
+                    {project.description}
+                </td>
+                <td>
+                    {project.links}
+                </td>
+                <td>
+                    {project.users.username}
+                </td>
+        </tr>
     )
 }
 
-const ProjectList = ({items}) => {
+const ProjectList = ({projects}) => {
     return (
-        <div className='table'>
-            <div className='table_bar'>
-                <div className='bar_block'>
+        <table>
+                <th>
                     ID
-                </div>
-                <div className='bar_block'>
-                    Project name
-                </div>
-                <div className='bar_block'>
+                </th>
+                <th>
+                   Name
+                </th>
+                <th>
                     Description
-                </div>
-                <div className='bar_block'>
+                </th>
+                <th>
                     Links
-                </div>
-                <div className='bar_block'>
-                    Members
-                </div>
-            </div>
-            {items.map((item) => <ProjectItem item={item}/>)}
-        </div>
+                </th>
+                {/*<th>*/}
+                {/*    Members*/}
+                {/*</th>*/}
+            {projects.map((project) => <ProjectItem project={project}/>)}
+        </table>
     )
 }
 

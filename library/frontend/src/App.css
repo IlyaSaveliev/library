@@ -45,9 +45,9 @@
     margin-left: 30px;
 }
 
-/*.clr {*/
-/*    height: 260px;*/
-/*}*/
+.clr {
+    min-height: 480px;
+}
 
 .footer {
     width: 100%;
