@@ -46,7 +46,21 @@
 }
 
 .clr {
-    min-height: 480px;
+    min-height: 485px;
+}
+
+.li {
+    text-align: start;
+}
+
+.th {
+    width: 250px;
+    border: solid 1px;
+    background-color: #b8edf1;
+}
+
+.td {
+    border: 1px solid;
 }
 
 .footer {

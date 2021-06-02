@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import UserList from "./components/Users.js";
 import Header from "./components/Header.js";
@@ -7,12 +7,13 @@ import Clr from "./components/Clr.js";
 import Footer from "./components/Footer.js";
 import ProjectList from "./components/Projects.js";
 import TodoList from "./components/Todos.js";
-import {HashRouter, Route, Link, Redirect, BrowserRouter} from "react-router-dom";
+import {HashRouter, Route, Link, Redirect, BrowserRouter, Switch} from "react-router-dom";
 import axios from "axios";
+
 
 class App extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             'users': [],
             'projects': [],
@@ -22,7 +23,7 @@ class App extends React.Component {
 
 
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/users')
+        axios.get('http://127.0.0.1:8000/api/users/')
             .then(response => {
                 const users = response.data
                 this.setState(
@@ -32,8 +33,7 @@ class App extends React.Component {
                 )
             }).catch(error => console.log(error))
 
-
-            axios.get('http://127.0.0.1:8000/api/project')
+            axios.get('http://127.0.0.1:8000/api/project/')
                 .then(response => {
                     const projects = response.data
                     this.setState(
@@ -43,8 +43,7 @@ class App extends React.Component {
                     )
                 }).catch(error => console.log(error))
 
-
-            axios.get('http://127.0.0.1:8000/api/todo')
+            axios.get('http://127.0.0.1:8000/api/todo/')
                 .then(response => {
                     const notes = response.data
                     this.setState(
@@ -53,7 +52,6 @@ class App extends React.Component {
                         }
                     )
                 }).catch(error => console.log(error))
-
 
     }
 
@@ -67,25 +65,25 @@ class App extends React.Component {
                     <HashRouter>
                         <nav>
                             <ul>
-                                <li>
+                                <li className='li'>
                                     <Link to='/'>Users</Link>
                                 </li>
-                                <li>
+                                <li className='li'>
                                     <Link to='/projects'>Projects</Link>
                                 </li>
-                                <li>
+                                <li className='li'>
                                     <Link to='/notes'>Notes</Link>
                                 </li>
                             </ul>
                         </nav>
 
-                        <div>
-                            <Route exact path='/' component={() => <UserList items={this.state.users}/>}/>
+                        <Switch>
+                            <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
                             <Route exact path='/projects'
-                                   component={() => <ProjectList items={this.state.projects}/>}/>
-                            <Route exact path='/notes' component={() => <TodoList items={this.state.todos}/>}/>
+                                   component={() => <ProjectList projects={this.state.projects}/>}/>
+                            <Route exact path='/notes' component={() => <TodoList notes={this.state.notes}/>}/>
                             <Redirect from='/users' to='/'/>
-                        </div>
+                        </Switch>
                     </HashRouter>
                     <div>
                         <Clr/>

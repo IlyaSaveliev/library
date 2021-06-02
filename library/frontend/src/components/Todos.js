@@ -1,60 +1,60 @@
 // noinspection JSUnresolvedVariable
 import React from "react";
 
-const TodoItem = ({todo}) => {
+const TodoItem = ({note}) => {
     return (
         <tr>
-            <td>
-                {todo.id}
+            <td className='td'>
+                {note.id}
             </td>
-            <td>
-                {todo.project.name}
+            <td className='td'>
+                {note.project}
             </td>
-            <td>
-                {todo.description}
+            <td className='td'>
+                {note.description}
             </td>
-            <td>
-                {todo.created_ad}
+            <td className='td'>
+                {note.createdAd}
             </td>
-            <td>
-                {todo.updated_ad}
+            <td className='td'>
+                {note.updatedAd}
             </td>
-            <td>
-                {todo.owner.username}
+            <td className='td'>
+                {note.owner}
             </td>
-            <td>
-                {todo.status}
+            <td className='td'>
+                {note.status}
             </td>
         </tr>
 
     )
 }
 
-const TodoList = ({todos}) => {
+const TodoList = ({notes}) => {
     return (
         <table>
-                <th>
+                <th className='th'>
                     ID
                 </th>
-                <th>
+                <th className='th'>
                     Project name
                 </th>
-                <th>
+                <th className='th'>
                     Description
                 </th>
-                <th>
+                <th className='th'>
                     Created
                 </th>
-                <th>
+                <th className='th'>
                     Updated
                 </th>
-                <th>
+                <th className='th'>
                     Owner
                 </th>
-                <th>
+                <th className='th'>
                     Status
                 </th>
-            {todos.map((todo) => <TodoItem todo={todo}/>)}
+                {notes.map((note) => <TodoItem note={note}/>)}
         </table>
     )
 }

@@ -3,19 +3,19 @@ import React from "react";
 const ProjectItem = ({project}) => {
     return (
         <tr>
-                <td>
+                <td className='td'>
                     {project.id}
                 </td>
-                <td>
+                <td className='td'>
                     {project.name}
                 </td>
-                <td>
+                <td className='td'>
                     {project.description}
                 </td>
-                <td>
+                <td className='td'>
                     {project.links}
                 </td>
-                <td>
+                <td className='td'>
                     {project.users.username}
                 </td>
         </tr>
@@ -25,22 +25,22 @@ const ProjectItem = ({project}) => {
 const ProjectList = ({projects}) => {
     return (
         <table>
-                <th>
+                <th className='th'>
                     ID
                 </th>
-                <th>
+                <th className='th'>
                    Name
                 </th>
-                <th>
+                <th className='th'>
                     Description
                 </th>
-                <th>
+                <th className='th'>
                     Links
                 </th>
-                {/*<th>*/}
-                {/*    Members*/}
-                {/*</th>*/}
-            {projects.map((project) => <ProjectItem project={project}/>)}
+                <th className='th'>
+                    Members
+                </th>
+                {projects.map((project) => <ProjectItem project={project}/>)}
         </table>
     )
 }
