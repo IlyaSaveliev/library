@@ -3,7 +3,7 @@ from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer, HTMLFor
 from rest_framework.viewsets import ModelViewSet
 from todo.serializers import TodoSerializer, ProjectSerializer
 from todo.models import Project, Todo
-from rest_framework.permissions import AllowAny
+from rest_framework import permissions
 from rest_framework.pagination import *
 from todo.filters import ProjectNameFilter
 from rest_framework.response import Response
@@ -18,7 +18,7 @@ class TodoLimitOffsetPagination(LimitOffsetPagination):
 class ProjectViewSet(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    # permission_classes = [AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
     # pagination_class = ProjectLimitOffsetPagination
     # filterset_class = ProjectNameFilter
 
@@ -26,7 +26,7 @@ class ProjectViewSet(ModelViewSet):
 class TodoViewSet(ModelViewSet):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
-    # permission_classes = [AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
     # pagination_class = TodoLimitOffsetPagination
 
     # def destroy(self, request, pk=None):
