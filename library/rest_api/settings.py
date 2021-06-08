@@ -122,9 +122,9 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
     ],
 
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    # ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
