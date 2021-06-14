@@ -3,7 +3,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from users.models import User
-from users.serializers import UserModelSerializer
+from users.serializers import UserModelSerializer, UserModelSerializerV2
 from rest_framework.pagination import *
 from rest_framework import mixins, viewsets
 
@@ -18,3 +18,8 @@ class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.version == '0.2':
+            return UserModelSerializerV2
+        return UserModelSerializer

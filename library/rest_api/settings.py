@@ -36,10 +36,13 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework.authtoken',
     # 'django_crispy_forms',
+    # 'django.contrib.staticfiles',
+    'drf_yasg',
 
     'authors',
     'users',
     'todo',
+
 ]
 
 MIDDLEWARE = [
@@ -117,6 +120,9 @@ USE_L10N = True
 USE_TZ = True
 
 REST_FRAMEWORK = {
+
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+
     'DEFAULT_RENDERER_CLASSES': [
         'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
         'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
