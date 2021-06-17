@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import sys
+import graphene
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,12 +39,17 @@ INSTALLED_APPS = [
     # 'django_crispy_forms',
     # 'django.contrib.staticfiles',
     'drf_yasg',
+    'graphene_django',
 
     'authors',
     'users',
     'todo',
 
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'users.schema.schema',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
