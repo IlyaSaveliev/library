@@ -1,7 +1,7 @@
 // noinspection JSUnresolvedVariable
 import React from "react";
 
-const TodoItem = ({note}) => {
+const TodoItem = ({note, delete_note}) => {
     return (
         <tr>
             <td className='td'>
@@ -25,12 +25,15 @@ const TodoItem = ({note}) => {
             <td className='td'>
                 {note.status}
             </td>
+            <td>
+                <button type='button' onClick={()=>delete_note(note.id)}>Delete</button>
+            </td>
         </tr>
 
     )
 }
 
-const TodoList = ({notes}) => {
+const TodoList = ({notes, delete_note}) => {
     return (
         <table>
                 <th className='th'>
@@ -54,7 +57,8 @@ const TodoList = ({notes}) => {
                 <th className='th'>
                     Status
                 </th>
-                {notes.map((note) => <TodoItem note={note}/>)}
+                <th></th>
+                {notes.map((note) => <TodoItem note={note} delete_note={delete_note}/>)}
         </table>
     )
 }

@@ -8,6 +8,8 @@ import Footer from "./components/Footer.js";
 import ProjectList from "./components/Projects.js";
 import TodoList from "./components/Todos.js";
 import LoginForm from "./components/Auth.js";
+import ProjectForm from "./components/ProjectForm.js";
+import TodoForm from "./components/TodoForm.js";
 import {HashRouter, Route, Link, Redirect, BrowserRouter, Switch} from "react-router-dom";
 import axios from "axios";
 import Cookies from 'universal-cookie';
@@ -30,7 +32,7 @@ class App extends React.Component {
 
         axios.get('http://127.0.0.1:8000/api/users/', {headers})
             .then(response => {
-                this.setState({authors: response.data})
+                this.setState({users: response.data})
             }).catch(error => console.log(error))
 
         // axios.get('http://127.0.0.1:8000/api/users/')
@@ -75,13 +77,20 @@ class App extends React.Component {
     }
 
     get_headers() {
-        let headers = {
-            'Content-Type': 'application/json'
+        //     let headers = {
+        //         'Content-Type': 'application/json'
+        //     }
+        //     if (this.is_authenticated()) {
+        //         headers['Authorization'] = 'Token ' + this.state.token
+        //     }
+        //     return headers
+        // }
+        if (!this.is_authenticated())
+            return {};
+
+        return {
+            'Authorization': 'Token ' + this.state.token
         }
-        if (this.is_authenticated()) {
-            headers['Authorization'] = 'Token ' + this.state.token
-        }
-        return headers
     }
 
     get_token(username, password) {
@@ -92,13 +101,74 @@ class App extends React.Component {
             }).catch(error => alert('Неправильный логин или пароль'))
     }
 
+    delete_project(id) {
+        let headers = this.get_headers();
+        axios
+            .delete(`http://127.0.0.1:8000/api/project/${id}/`, {headers})
+            .then(response => {
+                this.setState(
+                    {
+                        'projects': this.state.projects.filter((project) => project.id !== id)
+                    }
+                )
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+     delete_note(id) {
+        let headers = this.get_headers();
+        axios
+            .delete(`http://127.0.0.1:8000/api/todo/${id}/`, {headers})
+            .then(response => {
+                this.setState(
+                    {
+                        'notes': this.state.notes.filter((note) => note.id !== id)
+                    }
+                )
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+    create_project(name, description, links, users) {
+        console.log("create_project " + name + " - " + description + " - " + links + " - " + users);
+
+       axios
+       .post(
+            'http://127.0.0.1:8000/api/project/',
+            {"name": name, "descriprion": description, "links": links, "users": users}
+       )
+       .then(response => {
+            this.load_data();
+       })
+       .catch(error => console.log('Error'))
+    }
+
+    create_note(project, description, createdAd, updatedAd, owner, status) {
+        console.log("create_note " + project + " - " + description + " - " + createdAd + " - " + updatedAd + " - " + owner + " - " + status);
+
+
+       axios
+       .post(
+            'http://127.0.0.1:8000/api/todo/',
+            {"project": project, "descriprion": description, "createdAd": createdAd, "updatedAd": updatedAd, "owner": owner, "status": "status"}
+       )
+       .then(response => {
+            this.load_data();
+       })
+       .catch(error => console.log('Error'))
+    }
+
 
     render() {
         return (
             <div className='App'>
                 <BrowserRouter>
                     <div>
-                        <Header />
+                        <Header/>
                     </div>
 
                     <nav>
@@ -116,14 +186,24 @@ class App extends React.Component {
                             <li className='li'>
                                 <Link to='/notes'>Notes</Link>
                             </li>
+                            <li className='li'>
+                                <Link to='/projects/create'>New Project</Link>
+                            </li>
+                            <li className='li'>
+                                <Link to='/notes/create'>New Note</Link>
+                            </li>
                         </ul>
                     </nav>
 
                     <Switch>
                         <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
                         <Route exact path='/projects'
-                               component={() => <ProjectList projects={this.state.projects}/>}/>
-                        <Route exact path='/notes' component={() => <TodoList notes={this.state.notes}/>}/>
+                               component={() => <ProjectList projects={this.state.projects} delete_project = {(id) => this.delete_project(id)} />}/>
+                        <Route exact path='/projects/create'
+                            component = {() => <ProjectForm create_project = {(name, description, links, users) => this.create_project(name, description, links, users)} users={this.state.users} />} />
+                        <Route exact path='/notes/create'
+                            component = {() => <TodoForm create_note = {(project, description, createdAd, updatedAd, owner, status) => this.create_note(project, description, createdAd, updatedAd, owner, status)}  />} />
+                        <Route exact path='/notes' component={() => <TodoList notes={this.state.notes} delete_note = {(id) => this.delete_note(id)}/>}/>
                         <Redirect from='/users' to='/'/>
                         <Route exact path='/login'
                                component={() => < LoginForm
