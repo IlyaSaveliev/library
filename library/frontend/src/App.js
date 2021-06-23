@@ -147,20 +147,20 @@ class App extends React.Component {
        .catch(error => console.log('Error'))
     }
 
-    create_note(project, description, createdAd, updatedAd, owner, status) {
-        console.log("create_note " + project + " - " + description + " - " + createdAd + " - " + updatedAd + " - " + owner + " - " + status);
-
-
-       axios
-       .post(
-            'http://127.0.0.1:8000/api/todo/',
-            {"project": project, "descriprion": description, "createdAd": createdAd, "updatedAd": updatedAd, "owner": owner, "status": "status"}
-       )
-       .then(response => {
-            this.load_data();
-       })
-       .catch(error => console.log('Error'))
-    }
+    // create_note(project, description, createdAd, updatedAd, owner, status) {
+    //     console.log("create_note " + project + " - " + description + " - " + createdAd + " - " + updatedAd + " - " + owner + " - " + status);
+    //
+    //
+    //    axios
+    //    .post(
+    //         'http://127.0.0.1:8000/api/todo/',
+    //         {"project": project, "descriprion": description, "createdAd": createdAd, "updatedAd": updatedAd, "owner": owner, "status": "status"}
+    //    )
+    //    .then(response => {
+    //         this.load_data();
+    //    })
+    //    .catch(error => console.log('Error'))
+    // }
 
 
     render() {
@@ -189,9 +189,9 @@ class App extends React.Component {
                             <li className='li'>
                                 <Link to='/projects/create'>New Project</Link>
                             </li>
-                            <li className='li'>
-                                <Link to='/notes/create'>New Note</Link>
-                            </li>
+                            {/*<li className='li'>*/}
+                            {/*    <Link to='/notes/create'>New Note</Link>*/}
+                            {/*</li>*/}
                         </ul>
                     </nav>
 
@@ -201,8 +201,8 @@ class App extends React.Component {
                                component={() => <ProjectList projects={this.state.projects} delete_project = {(id) => this.delete_project(id)} />}/>
                         <Route exact path='/projects/create'
                             component = {() => <ProjectForm create_project = {(name, description, links, users) => this.create_project(name, description, links, users)} users={this.state.users} />} />
-                        <Route exact path='/notes/create'
-                            component = {() => <TodoForm create_note = {(project, description, createdAd, updatedAd, owner, status) => this.create_note(project, description, createdAd, updatedAd, owner, status)}  />} />
+                        {/*<Route exact path='/notes/create'*/}
+                        {/*    component = {() => <TodoForm create_note = {(project, description, createdAd, updatedAd, owner, status) => this.create_note(project, description, createdAd, updatedAd, owner, status)}  />} />*/}
                         <Route exact path='/notes' component={() => <TodoList notes={this.state.notes} delete_note = {(id) => this.delete_note(id)}/>}/>
                         <Redirect from='/users' to='/'/>
                         <Route exact path='/login'

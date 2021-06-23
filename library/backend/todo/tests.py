@@ -1,12 +1,8 @@
-from django.test import TestCase
-import json
 from rest_framework import status
-from rest_framework.test import APIRequestFactory, force_authenticate, APIClient, APITestCase
+from rest_framework.test import APITestCase
 from mixer.backend.django import mixer
-from django.contrib.auth.models import User
-from .views import ProjectViewSet, TodoViewSet
-from .models import Todo, Project
-from users.models import User
+from .models import Todo
+
 
 class TestProjectViewSet(APITestCase):
 

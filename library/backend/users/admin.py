@@ -3,7 +3,6 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import User
 from todo.models import Todo, Project
-from django.conf import settings
 
 
 class CustomUserAdmin(UserAdmin):

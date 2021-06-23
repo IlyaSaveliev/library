@@ -1,18 +1,14 @@
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, include
+from django.views.generic import TemplateView
 from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
-from authors.views import AuthorModelViewSet
 from todo.views import ProjectViewSet, TodoViewSet
-from users import views
 from users.views import UserViewSet
 from rest_framework.authtoken import views
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from graphene_django.views import GraphQLView
-from django.views.decorators.csrf import csrf_exempt
-
-
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -44,4 +40,5 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('graphql/', GraphQLView.as_view(graphiql=True)),
+    path('', TemplateView.as_view(template_name='index.html')),
 ]

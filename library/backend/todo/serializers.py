@@ -1,5 +1,4 @@
 from todo.models import Project, Todo
-from users.models import User
 from rest_framework import serializers
 from users.serializers import UserModelSerializer
 

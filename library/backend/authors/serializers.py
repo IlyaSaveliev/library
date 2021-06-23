@@ -1,5 +1,5 @@
 from rest_framework.serializers import HyperlinkedModelSerializer
-from authors.models import Author
+from backend.authors.models import Author
 
 class AuthorModelSerializer(HyperlinkedModelSerializer):
     class Meta:
